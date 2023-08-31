@@ -11,10 +11,10 @@
         <h1>Bem vindo ao Blog</h1>
      </main>
     {% for post in posts_list %}
-<article>
-<h2>Em: {{ post.pub_date|date:"d / m / Y" }}</h2>
-<p>{{ post.body_text }}</p>
-</article>
+      <article>
+      <h2>Em: {{ post.pub_date|date:"d / m / Y" }}</h2>
+      <p>{{ post.body_text }}</p>
+      </article>
     {% endfor %}
 
   </body>
