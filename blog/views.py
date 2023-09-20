@@ -3,7 +3,7 @@ import json
 
 # django
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.detail import DetailView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.generic.edit import CreateView
@@ -90,7 +90,6 @@ def create_post(request):
         ).values(
         'pk', 'body_text', 'pub_date'
         ).first()
-        3/5
         data = {'success': True, 'post': post_data}
         status = 201 # Created
 
@@ -102,3 +101,11 @@ def create_post(request):
     response['Access-Control-Allow-Origin'] = '*'
 
     return response
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'post/post_list.html'
+    context_object_name = 'posts'
+
+class SobreTemplateView(TemplateView):
+    template_name = 'post/sobre.html'
