@@ -72,7 +72,7 @@ def get_post(request, post_id):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'post/post_form.html'
-    success_url = reverse_lazy('posts_list')
+    success_url = reverse_lazy('posts_all')
     # fields = ('body_text', )
     form_class = PostModelForm
 
@@ -111,3 +111,21 @@ class PostListView(ListView):
 
 class SobreTemplateView(TemplateView):
     template_name = 'post/sobre.html'
+
+def post_create_modal(request):
+    if request.method == "POST":
+        form = PostModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "postListChanged": None
+                    })
+                })
+    else:
+        form = PostModelForm()
+    return render(request, 'post/post_modal_form.html', {
+        'form': form,
+    })

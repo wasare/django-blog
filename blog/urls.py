@@ -7,6 +7,7 @@ from blog.views import (
     create_post,
     PostListView,
     SobreTemplateView,
+    post_create_modal,
 )
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
         SobreTemplateView.as_view(),
         name="about_page"
     ),
+    path('post/modal/add', post_create_modal, name="post_modal_add"),
 
 
 ]

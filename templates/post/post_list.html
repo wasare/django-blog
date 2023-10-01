@@ -8,6 +8,9 @@
         <a href="{% url 'post_add' %}" class="btn btn-primary mb-3">
             + Novo post
         </a>
+        <button hx-get="{% url 'post_modal_add' %}" hx-target="#dialog" class="btn btn-primary">
+            + Post (modal)
+        </button>
         {% for post in posts %}
         <article>
             <h2>Em: {{ post.pub_date|date:"d / m / Y" }}</h2>
@@ -18,5 +21,9 @@
         </article>
         {% endfor %}
     </div>
+</div>
+<!-- Placeholder for the modal -->
+<div id="modal" class="modal fade">
+    <div id="dialog" class="modal-dialog" hx-target="this"></div>
 </div>
 {% endblock %} {# fecha o bloco content #}
