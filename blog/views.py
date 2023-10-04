@@ -9,6 +9,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -72,9 +74,15 @@ def get_post(request, post_id):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'post/post_form.html'
-    success_url = reverse_lazy('posts_list')
+    success_url = reverse_lazy('posts_all')
     # fields = ('body_text', )
     form_class = PostModelForm
+    success_message = 'Postagem salva com sucesso.'
+
+    # implementa o método que conclui a ação com sucesso
+    def form_valid(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(PostCreateView, self).form_valid(request, *args, **kwargs)
 
 @csrf_exempt
 def create_post(request):
