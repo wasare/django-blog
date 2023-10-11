@@ -152,3 +152,5 @@ MESSAGE_TAGS = {
 
 LOGIN_REDIRECT_URL = '/admin'
 LOGOUT_REDIRECT_URL = '/admin'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
