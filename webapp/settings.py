@@ -158,3 +158,25 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
 
+
+"""
+Como preparar uma conta do Gmail para envios
+
+Não é recomendado usar uma conta gmail para esta finalidade, mas para testes e poucas
+dezenas de mensagens por dia pode ser viável. O ideal é criar uma conta exclusiva para
+esta finalidade.
+
+Para habilitar o envio de mensagens por SMTP no Gmail faça o seguinte:
+1. Conecte / acesse a conta Gmail pelo navegador;
+2. Acesse as configurações da conta e ative a autenticação de 2 fatores (2FA);
+3. Crie uma senha de App: https://myaccount.google.com/u/2/signinoptions/two-step-verification
+4. Utilize a conta como login e a senha de App para envio usando qualquer sistema / linguagem
+de programação.
+
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '<informar um usuário válido>'
+EMAIL_HOST_PASSWORD = '<informar uma senha de APP válida'

@@ -7,6 +7,7 @@ from blog.views import (
     create_post,
     PostListView,
     SobreTemplateView,
+    post_send,
 )
 
 urlpatterns = [
@@ -24,6 +25,6 @@ urlpatterns = [
         SobreTemplateView.as_view(),
         name="about_page"
     ),
-
+    path('post-send/<int:post_id>', post_send, name="post_send"),
 
 ]
